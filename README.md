@@ -1,38 +1,41 @@
-# 🎟️ Ticket Booking System (Flask)
+# Ticket Booking System
 
-## 📌 Project Description
-A simple web-based ticket booking system built using Flask and SQLite.  
-Users can view plays, select seats, book tickets, and manage bookings.
+## Project Description
+This is a simple Ticket Booking System web project built using HTML, CSS, JavaScript, Node.js and Express.js.
 
----
+The project allows users to view available options, select seats and book tickets through a simple interface.
 
-## 🚀 Features
-- 🎭 View available plays
-- 💺 Seat selection system
-- 💰 Dynamic price calculation
-- 📊 Booking dashboard
-- ❌ Unbook tickets option
+Express.js is used to run the backend server and serve the frontend files.
 
 ---
 
-## 🛠️ Tech Stack
-- Python (Flask)
-- SQLite3
-- HTML, CSS, JavaScript
+## Features
+- View available options (plays/events)  
+- Select seats  
+- Book tickets  
+- Simple UI for interaction  
+- Backend server using Express.js  
 
 ---
 
-## 📂 Project Structure
-- app.py (Main Flask app)
-- models.py (Database setup)
-- templates/ (Frontend pages)
+## Technologies Used
+- HTML  
+- CSS  
+- JavaScript  
+- Node.js  
+- Express.js  
 
 ---
 
-## 🔗 GitHub Link
-https://github.com/supriyayadav3416/ticket-booking-system
+## Project Structure
+- app.js / server.js - Backend server  
+- index.html - Main UI  
+- style.css - Styling  
+- script.js - Frontend logic  
+- templates/ - HTML pages  
+- package.json - Dependencies  
 
 ---
 
-## 👩‍💻 Developed By
-Supriya Yadav
+## How to Run
+1. Install dependencies:
