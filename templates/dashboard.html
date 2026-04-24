@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+
+    <style>
+        body{
+            font-family:Arial;
+            text-align:center;
+        }
+
+        table{
+            margin:auto;
+            border-collapse:collapse;
+            width:85%;
+        }
+
+        th,td{
+            border:1px solid #ddd;
+            padding:10px;
+        }
+
+        th{
+            background:#333;
+            color:white;
+        }
+
+        tr:nth-child(even){
+            background:#f9f9f9;
+        }
+
+        .btn{
+            padding:5px 10px;
+            background:red;
+            color:white;
+            text-decoration:none;
+            border-radius:5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>📊 Booked Tickets</h2>
+
+<table>
+
+<tr>
+    <th>ID</th>
+    <th>Play</th>
+    <th>Seat</th>
+    <th>Name</th>
+    <th>Phone</th>
+    <th>Price</th>
+    <th>Action</th>
+</tr>
+
+{% for b in data %}
+<tr>
+    <td>{{ b[0] }}</td>
+    <td>{{ b[1] }}</td>
+    <td>{{ b[2] }}</td>
+    <td>{{ b[3] }}</td>
+    <td>{{ b[4] }}</td>
+    <td>₹{{ b[5] }}</td>
+
+    <td>
+        <a class="btn" href="/unbook/{{ b[0] }}">Unbook</a>
+    </td>
+</tr>
+{% endfor %}
+
+</table>
+
+</body>
+</html>   

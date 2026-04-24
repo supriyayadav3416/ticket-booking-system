@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Seats</title>
+
+    <style>
+        body{
+            text-align:center;
+            font-family:Arial;
+            margin:0;
+            color:white;
+        }
+
+        .overlay{
+            position:fixed;
+            top:0;left:0;
+            width:100%;height:100%;
+            background:rgba(0,0,0,0.5);
+            z-index:-1;
+        }
+
+        .screen{
+            background:#333;
+            color:white;
+            padding:8px;
+            width:60%;
+            margin:10px auto;
+            border-radius:6px;
+        }
+
+        .row{ margin:6px; }
+
+        .seat{
+            width:35px;
+            height:35px;
+            margin:4px;
+            display:inline-block;
+            border:1px solid #333;
+            cursor:pointer;
+            line-height:35px;
+            border-radius:4px;
+            background:white;
+            color:black;
+        }
+
+        .selected{ background:green; color:white; }
+        .booked{ background:red; color:white; cursor:not-allowed; }
+
+        .box{
+            margin-top:20px;
+            display:inline-block;
+            padding:15px;
+            border-radius:10px;
+            background:white;
+            color:black;
+        }
+
+        input{
+            margin:5px;
+            padding:6px;
+            width:200px;
+        }
+
+        button{
+            padding:8px 15px;
+            cursor:pointer;
+        }
+
+        .priceBox{
+            margin-top:10px;
+            font-weight:bold;
+        }
+    </style>
+
+    <script>
+        let selected = [];
+
+        function toggleSeat(btn, seat){
+            if(selected.includes(seat)){
+                selected = selected.filter(s => s !== seat);
+                btn.classList.remove("selected");
+            } else {
+                selected.push(seat);
+                btn.classList.add("selected");
+            }
+            document.getElementById("seatInput").value = selected.join(",");
+            updatePrice();
+        }
+
+        function getPrice(seat){
+            if(seat.startsWith('A') || seat.startsWith('B')) return 500;
+            if(seat.startsWith('C') || seat.startsWith('D')) return 300;
+            return 200;
+        }
+
+        function updatePrice(){
+            let total = 0;
+            for(let s of selected){
+                total += getPrice(s);
+            }
+            document.getElementById("priceBox").innerText =
+                "💰 Total Price: ₹" + total;
+        }
+
+        function validateForm(){
+            if(selected.length === 0){
+                alert("❌ Please select seat first");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+
+<!-- 🎬 ONLY CHANGE URLs BELOW -->
+<body style="
+    background-image:url('{{ play_image }}');
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+"><body style="
+    background-image:url('{{ play_image }}');
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+">
+<!-- dark overlay -->
+<div class="overlay"></div>
+
+<h2>🎭 {{ play_name }}</h2>
+<p>Select your seats</p>
+
+<div class="screen">SCREEN</div>
+
+{% for r in ['A','B','C','D','E'] %}
+<div class="row">
+
+    {% for i in range(1,11) %}
+    {% set seat = r ~ i %}
+
+        {% if seat in booked %}
+            <div class="seat booked">{{ seat }}</div>
+        {% else %}
+            <div class="seat" onclick="toggleSeat(this,'{{ seat }}')">
+                {{ seat }}
+            </div>
+        {% endif %}
+
+    {% endfor %}
+
+</div>
+{% endfor %}
+
+<div class="box">
+
+<h3>Login Details</h3>
+
+<form method="POST" onsubmit="return validateForm()">
+
+    <input type="hidden" name="seat" id="seatInput">
+
+    <input name="name" placeholder="Name" required>
+    <br>
+    <input name="phone" placeholder="Phone" required>
+    <br>
+
+    <div class="priceBox" id="priceBox">💰 Total Price: ₹0</div>
+
+    <br>
+    <button type="submit">🎟 Book Ticket</button>
+
+</form>
+
+</div>
+
+</body>
+</html>      
