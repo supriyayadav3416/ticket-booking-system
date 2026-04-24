@@ -39,3 +39,24 @@ Express.js is used to run the backend server and serve the frontend files.
 
 ## How to Run
 1. Install dependencies:
+2. Start server:
+3. Open in browser:
+---
+
+## Working
+User opens the website and sees available shows/events.  
+After selecting a show, user can choose seats and book tickets.  
+The booking is handled through frontend logic and backend server.
+
+---
+
+## Future Improvements
+- Add database to store bookings  
+- Add login and user authentication  
+- Add payment gateway simulation  
+- Improve UI design  
+
+---
+
+## Developer
+Supriya Yadav
