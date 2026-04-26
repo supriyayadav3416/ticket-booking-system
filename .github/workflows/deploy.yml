@@ -1,19 +1,25 @@
-name: Deploy to Render
+name: Deploy Flask App
 
 on:
   push:
     branches:
       - main
 
-permissions:
-  contents: read
-  deployments: write
-
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Set Deployment Status
-        uses: chrnorm/deployment-action@v2
-        id: deployment
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run app (test)
+        run: python app.py
