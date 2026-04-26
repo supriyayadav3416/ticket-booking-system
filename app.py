@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from models import connect_db, create_tables
+import os
 
 app = Flask(__name__)
 app.secret_key = "secret"
@@ -52,7 +53,6 @@ def seats(play_id):
     play = cursor.fetchone()
 
     if request.method == "POST":
-
         seats = request.form.get("seat")
         name = request.form.get("name")
         phone = request.form.get("phone")
@@ -137,6 +137,7 @@ def unbook(id):
 
     return redirect("/dashboard")
 
-# ---------- RUN ----------
+# ---------- RUN (IMPORTANT FOR RENDER) ----------
 if __name__ == "__main__":
-    app.run(debug=True)     
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
